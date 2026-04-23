@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# NOTE: package-lock.json is intentionally committed (helps Vercel avoid ECONNRESET)
