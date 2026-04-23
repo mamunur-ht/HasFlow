@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:       #0a0a0f;
+  --surface:  #111118;
+  --surface2: #1a1a24;
+  --border:   #2a2a3a;
+  --accent:   #4fffb0;
+  --accent2:  #7b61ff;
+  --text:     #e8e8f0;
+  --muted:    #666680;
+  --error:    #ff4f7b;
+  --warning:  #ffb84f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; height: 100%; overflow: hidden; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+@keyframes shine { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes slide-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.slide-in { animation: slide-in 0.25s ease forwards; }
+.pulse { animation: pulse-dot 2s ease-in-out infinite; }
+
+.btn-convert {
+  background: linear-gradient(90deg, #4fffb0, #7b61ff, #4fffb0);
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+  color: #0a0a0f;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+.btn-convert:hover { transform: translateY(-1px); box-shadow: 0 4px 24px rgba(79,255,176,0.35); }
+.btn-convert:active { transform: translateY(0); }
+.btn-convert:disabled { opacity: 0.5; cursor: not-allowed; animation: none; background: var(--border); color: var(--muted); transform: none; box-shadow: none; }
